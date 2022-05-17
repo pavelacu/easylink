@@ -1,0 +1,5 @@
+{
+  "name": "easylink-Backend: Java",
+  "description": "Easylink is a Java app generate short links from urls, which can easily be deployed to Heroku.",
+  "addons": [ "heroku-postgresql", "heroku-redis" ]
+}

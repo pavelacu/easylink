@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: easylink
+  datasource:
+    url: ${JDBC_DATABASE_URL:}    
+    platform: postgresql
+  jpa:
+    hibernate:
+      ddl-auto: update
+  server:
+    port: 5000
