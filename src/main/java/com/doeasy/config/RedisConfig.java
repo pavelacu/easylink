@@ -13,10 +13,11 @@ public class RedisConfig {
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() throws URISyntaxException{                
-        String redisUrl = System.getenv("REDIS_URL");
+        String redisUrl = System.getenv("REDIS_URL");        
 	    URI redistogoUri = new URI(redisUrl);
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(redistogoUri.getHost(), redistogoUri.getPort());
-        redisStandaloneConfiguration.setPassword(redistogoUri.getUserInfo().split(":", 2)[1]);
+        System.out.println(redistogoUri.getUserInfo().split(":", 2)[1]);
+        redisStandaloneConfiguration.setPassword(redistogoUri.getUserInfo().split(":", 2)[1]);              
         return new LettuceConnectionFactory(redisStandaloneConfiguration);
     }
 }
