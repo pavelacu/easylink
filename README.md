@@ -2,7 +2,7 @@
 Shortlink services backend implements in Java, Redis and Postgresql. Designed for deploy in Heroku Services.
 
 ## Test app
-#### Create shortlink
+
 **Generate Shortlink**
 - URL: /
 - Method: POST
@@ -10,8 +10,7 @@ Shortlink services backend implements in Java, Redis and Postgresql. Designed fo
 - Request: { url: "my_url"}
 - Response: shortlink
 
-**Redirect Shortlink to real URL**
-key is a shortlink generate with before method
+**Redirect Shortlink to real URL**: parameter key is a shortlink generate with before method
 - URL: /{key}
 - Method: get
 - MediaType: text
