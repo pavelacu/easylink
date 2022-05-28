@@ -1,7 +1,24 @@
-# easylink
-Shortlink services implements in Java, Redis and Postgresql. Designed for deploy in Heroku Services.
+# easylink-bk
+Shortlink services backend implements in Java, Redis and Postgresql. Designed for deploy in Heroku Services.
+
+## Test app
+#### Create shortlink
+**Generate Shortlink**
+- URL: /
+- Method: POST
+- MediaType: JSON
+- Request: { url: "my_url"}
+- Response: shortlink
+
+**Redirect Shortlink to real URL**
+key is a shortlink generate with before method
+- URL: /{key}
+- Method: get
+- MediaType: text
+- Response: redirect to URL
 
 
+## How Install
 
 1. Get a Heroku account
 2. Create a new application
