@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.doeasy.entity.ShortLink;
 import com.doeasy.service.ShortLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import com.google.common.math.LongMath;
 
 
-@RestController
-@RequestMapping(value = "/")
+@Controller
 
 public class ShortLinkController {
 
@@ -30,7 +31,8 @@ public class ShortLinkController {
         this.shortLinkService = shortLinkService;
     }
 
-    @PostMapping
+    @RequestMapping(value = "/cut", method = RequestMethod.POST, produces="application/text")
+    @ResponseBody
     public String save(@RequestBody ShortLink shortlink){
         shortlink.setUrl(cleanUrl(shortlink.getUrl()));    
         shortlink = this.shortLinkService.save(shortlink);        
@@ -38,7 +40,7 @@ public class ShortLinkController {
         return idToShortURL(shortlink.getId());
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET)
+    @RequestMapping(value = "/fw/{key}", method = RequestMethod.GET)
     public RedirectView redirectUrl(@PathVariable String key, HttpServletRequest request, HttpServletResponse response) throws IOException, URISyntaxException, Exception {        
         long id = shortURLtoID(key);
         ShortLink data = this.shortLinkService.findById(id);
@@ -48,9 +50,9 @@ public class ShortLinkController {
     }
 
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public String index() {
-      return "Hello World";
+      return "index";
     }
 
     static String cleanUrl(String url){
